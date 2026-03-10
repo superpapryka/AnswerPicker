@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:AnswerPicker.Models"
+             x:Class="AnswerPicker.Views.MainPage"
+             Title="Answer Picker"
+             BackgroundColor="peru">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="12" Spacing="12">
+
+            <Frame StyleClass="panel">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Class management" FontAttributes="Bold" />
+                    <HorizontalStackLayout Spacing="8">
+                        <Entry x:Name="NewClassEntry" Placeholder="New class name" StyleClass="input" FontAttributes="Bold" />
+                        <Button Text="Add class" Clicked="OnAddClassClicked" StyleClass="primary-btn" />
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout Spacing="8" VerticalOptions="Center">
+                        <Picker x:Name="ClassesPicker" Title="Select class" WidthRequest="200" StyleClass="picker" />
+                        <Button Text="Load" Clicked="OnLoadClassClicked" StyleClass="primary-btn" />
+                        <Button Text="Save" Clicked="OnSaveClassClicked" StyleClass="primary-btn" />
+                        <Button Text="Delete class" Clicked="OnDeleteClassClicked" StyleClass="danger-btn" />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame StyleClass="panel">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Students" FontAttributes="Bold" />
+                    <HorizontalStackLayout Spacing="8">
+                        <Entry x:Name="NewStudentEntry" Placeholder="New student name" StyleClass="input" FontAttributes="Bold" HorizontalOptions="Fill" />
+                        <Button Text="Add" Clicked="OnAddStudentClicked" StyleClass="primary-btn" />
+                        <Button Text="Reset Lucky Number" Clicked="OnResetLuckyNumberClicked" StyleClass="primary-btn" />
+                    </HorizontalStackLayout>
+
+                    <CollectionView x:Name="StudentsCollection" SelectionMode="None">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="models:Student">
+                                <Grid Padding="6" ColumnSpacing="8" RowSpacing="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Text="{Binding Name}" Grid.Column="0" StyleClass="student-item" 
+                                           FontAttributes="Bold" VerticalOptions="Center" 
+                                           BackgroundColor="{Binding IsLucky, Converter={StaticResource BoolToColorConverter}}" />
+
+                                    <Button Text="{Binding IsAbsent, Converter={StaticResource AbsenceStatusConverter}}" 
+                                            Grid.Column="1" 
+                                            Clicked="OnTogglePresenceClicked" 
+                                            CommandParameter="{Binding .}" 
+                                            StyleClass="danger-btn" />
+
+                                    <Button Text="Delete" Grid.Column="2" 
+                                            Clicked="OnDeleteStudentClicked" 
+                                            CommandParameter="{Binding .}" 
+                                            StyleClass="danger-btn" />
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                    <Button Text="Lucky Number" Clicked="OnLuckyNumberClicked" StyleClass="primary-btn" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame StyleClass="panel">
+                <VerticalStackLayout Spacing="8" HorizontalOptions="Center">
+                    <Label Text="Random pick" FontAttributes="Bold" />
+                    <Button Text="Pick student" Clicked="OnPickStudentClicked" StyleClass="primary-btn" />
+                    <Label x:Name="PickedLabel" StyleId="pickedLabel" FontAttributes="Bold"/>
+                </VerticalStackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

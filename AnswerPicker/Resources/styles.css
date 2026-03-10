@@ -1,0 +1,44 @@
+﻿.contentpage {
+    background-color: peru;
+}
+
+.appshell{
+    -maui-shell-background: sienna;
+}
+
+.panel {
+    background-color: navajowhite;
+    padding: 10;
+    margin: 5;
+    border-radius: 10;
+}
+
+.danger-btn {
+    background-color: crimson;
+    color: white;
+    padding: 8;
+    border-radius: 8;
+}
+
+.student-item {
+    padding: 6;
+    margin: 4;
+    border-radius: 6;
+    color: blue;
+    font-size: 16;
+}
+
+.primary-btn {
+    background-color: dodgerblue;
+    color: white;
+    padding: 10;
+    border-radius: 8;
+}
+
+.input {
+    background-color: lightseagreen;
+    color: yellow;
+    border-radius: 8;
+    padding: 8;
+    margin: 3;
+}
