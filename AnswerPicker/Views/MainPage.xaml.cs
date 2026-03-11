@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.ObjectModel;
 using Microsoft.Maui.Controls;
 using AnswerPicker.Services;
@@ -50,7 +50,7 @@ public partial class MainPage : ContentPage
             students.Clear();
             NewClassEntry.Text = string.Empty;
 
-            fileService.SaveClass(name, new string[] { });
+            fileService.SaveClass(name, new List<Student>());
             RefreshClasses();
         }
     }
@@ -62,10 +62,9 @@ public partial class MainPage : ContentPage
 
         var list = fileService.LoadClass(selected);
         students.Clear();
-
         foreach (var s in list)
         {
-            students.Add(new Student(s));
+            students.Add(s);
         }
 
         StudentsCollection.ItemsSource = null;
@@ -79,8 +78,11 @@ public partial class MainPage : ContentPage
         var selected = ClassesPicker.SelectedItem as string;
         if (string.IsNullOrWhiteSpace(selected)) return;
 
-        fileService.SaveClass(selected, students.Select(s => s.Name));
+        fileService.SaveClass(selected, students.ToList());
+
+        var previousSelection = selected;
         RefreshClasses();
+        ClassesPicker.SelectedItem = previousSelection;
     }
 
     private async void OnDeleteClassClicked(object sender, EventArgs e)
