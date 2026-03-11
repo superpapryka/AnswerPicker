@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:AnswerPicker.Models"
@@ -14,14 +14,14 @@
                     <Label Text="Class management" FontAttributes="Bold" />
                     <HorizontalStackLayout Spacing="8">
                         <Entry x:Name="NewClassEntry" Placeholder="New class name" StyleClass="input" FontAttributes="Bold" />
-                        <Button Text="Add class" Clicked="OnAddClassClicked" StyleClass="primary-btn" />
+                        <Button Text="Add class" Clicked="OnAddClassClicked" StyleId="primary-btn" />
                     </HorizontalStackLayout>
 
                     <HorizontalStackLayout Spacing="8" VerticalOptions="Center">
                         <Picker x:Name="ClassesPicker" Title="Select class" WidthRequest="200" StyleClass="picker" />
-                        <Button Text="Load" Clicked="OnLoadClassClicked" StyleClass="primary-btn" />
-                        <Button Text="Save" Clicked="OnSaveClassClicked" StyleClass="primary-btn" />
-                        <Button Text="Delete class" Clicked="OnDeleteClassClicked" StyleClass="danger-btn" />
+                        <Button Text="Load" Clicked="OnLoadClassClicked" StyleId="primary-btn" />
+                        <Button Text="Save" Clicked="OnSaveClassClicked" StyleId="primary-btn" />
+                        <Button Text="Delete class" Clicked="OnDeleteClassClicked" StyleId="danger-btn" />
                     </HorizontalStackLayout>
                 </VerticalStackLayout>
             </Frame>
@@ -31,8 +31,8 @@
                     <Label Text="Students" FontAttributes="Bold" />
                     <HorizontalStackLayout Spacing="8">
                         <Entry x:Name="NewStudentEntry" Placeholder="New student name" StyleClass="input" FontAttributes="Bold" HorizontalOptions="Fill" />
-                        <Button Text="Add" Clicked="OnAddStudentClicked" StyleClass="primary-btn" />
-                        <Button Text="Reset Lucky Number" Clicked="OnResetLuckyNumberClicked" StyleClass="primary-btn" />
+                        <Button Text="Add" Clicked="OnAddStudentClicked" StyleId="primary-btn" />
+                        <Button Text="Reset Lucky Number" Clicked="OnResetLuckyNumberClicked" StyleId="primary-btn" />
                     </HorizontalStackLayout>
 
                     <CollectionView x:Name="StudentsCollection" SelectionMode="None">
@@ -53,25 +53,25 @@
                                             Grid.Column="1" 
                                             Clicked="OnTogglePresenceClicked" 
                                             CommandParameter="{Binding .}" 
-                                            StyleClass="danger-btn" />
+                                            StyleId="danger-btn" />
 
                                     <Button Text="Delete" Grid.Column="2" 
                                             Clicked="OnDeleteStudentClicked" 
                                             CommandParameter="{Binding .}" 
-                                            StyleClass="danger-btn" />
+                                            StyleId="danger-btn" />
                                 </Grid>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
 
-                    <Button Text="Lucky Number" Clicked="OnLuckyNumberClicked" StyleClass="primary-btn" />
+                    <Button Text="Lucky Number" Clicked="OnLuckyNumberClicked" StyleId="primary-btn" />
                 </VerticalStackLayout>
             </Frame>
 
             <Frame StyleClass="panel">
                 <VerticalStackLayout Spacing="8" HorizontalOptions="Center">
                     <Label Text="Random pick" FontAttributes="Bold" />
-                    <Button Text="Pick student" Clicked="OnPickStudentClicked" StyleClass="primary-btn" />
+                    <Button Text="Pick student" Clicked="OnPickStudentClicked" StyleId="primary-btn" />
                     <Label x:Name="PickedLabel" StyleId="pickedLabel" FontAttributes="Bold"/>
                 </VerticalStackLayout>
             </Frame>
