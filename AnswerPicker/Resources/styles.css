@@ -1,4 +1,4 @@
-﻿.contentpage {
+.contentpage {
     background-color: peru;
 }
 
@@ -13,11 +13,12 @@
     border-radius: 10;
 }
 
-.danger-btn {
-    background-color: crimson;
-    color: white;
-    padding: 8;
+.input {
+    background-color: lightseagreen;
+    color: yellow;
     border-radius: 8;
+    padding: 8;
+    margin: 3;
 }
 
 .student-item {
@@ -28,17 +29,16 @@
     font-size: 16;
 }
 
-.primary-btn {
+#danger-btn {
+    background-color: crimson;
+    color: white;
+    padding: 8;
+    border-radius: 8;
+}
+
+#primary-btn {
     background-color: dodgerblue;
     color: white;
     padding: 10;
     border-radius: 8;
-}
-
-.input {
-    background-color: lightseagreen;
-    color: yellow;
-    border-radius: 8;
-    padding: 8;
-    margin: 3;
 }
