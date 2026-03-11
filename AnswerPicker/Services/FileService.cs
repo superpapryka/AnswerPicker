@@ -1,4 +1,5 @@
-﻿using System;
+using AnswerPicker.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -23,18 +24,42 @@ public class FileService
         return files.Select(f => Path.GetFileNameWithoutExtension(f)).OrderBy(n => n).ToList();
     }
 
-    public List<string> LoadClass(string className)
+    public List<Student> LoadClass(string className)
     {
         var path = GetClassPath(className);
-        if (!File.Exists(path)) return new List<string>();
+        if (!File.Exists(path)) return new List<Student>();
+
         var lines = File.ReadAllLines(path);
-        return lines.Where(l => !string.IsNullOrWhiteSpace(l)).Select(l => l.Trim()).ToList();
+        var result = new List<Student>();
+
+        foreach (var line in lines)
+        {
+            if (string.IsNullOrWhiteSpace(line)) continue;
+
+            var parts = line.Split('|');
+            var student = new Student(parts[0].Trim());
+
+            if (parts.Length > 1 && bool.TryParse(parts[1], out bool isAbsent) && isAbsent)
+            {
+                student.SetAbsent();
+            }
+
+            if (parts.Length > 2 && bool.TryParse(parts[2], out bool isLucky) && isLucky)
+            {
+                student.SetLucky(true);
+            }
+
+            result.Add(student);
+        }
+
+        return result;
     }
 
-    public void SaveClass(string className, IEnumerable<string> students)
+    public void SaveClass(string className, IEnumerable<Student> students)
     {
         var path = GetClassPath(className);
-        File.WriteAllLines(path, students.Select(s => s ?? string.Empty));
+        var lines = students.Select(s => $"{s.Name}|{s.IsAbsent}|{s.IsLucky}");
+        File.WriteAllLines(path, lines);
     }
 
     public void DeleteClass(string className)
