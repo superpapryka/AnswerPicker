@@ -12,7 +12,7 @@ namespace AnswerPicker.Converters
             {
                 return isAbsent ? "Present" : "Absent";
             }
-            return "Absent";  // Domyślnie zakładajmy, że jest "Absent"
+            return "Absent";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
