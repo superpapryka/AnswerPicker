@@ -5,12 +5,9 @@
              x:Class="AnswerPicker.App">
 
     <Application.Resources>
-        <!-- Zasoby aplikacji -->
         <ResourceDictionary>
-            <!-- Rejestracja konwerterów -->
             <local:AbsenceStatusConverter x:Key="AbsenceStatusConverter" />
             <local:BoolToColorConverter x:Key="BoolToColorConverter" />
-            <!-- Zasoby takie jak style (np. styles.css) -->
             <StyleSheet Source="/Resources/styles.css" />
         </ResourceDictionary>
     </Application.Resources>
