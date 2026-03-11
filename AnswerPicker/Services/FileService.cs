@@ -17,14 +17,12 @@ public class FileService
             Directory.CreateDirectory(classesFolder);
     }
 
-    // Zwraca listę nazw klas (bez rozszerzenia)
     public List<string> GetClassList()
     {
         var files = Directory.GetFiles(classesFolder, "*.txt");
         return files.Select(f => Path.GetFileNameWithoutExtension(f)).OrderBy(n => n).ToList();
     }
 
-    // Wczytuje linię po linii (każda linia = uczniowie jako tekst)
     public List<string> LoadClass(string className)
     {
         var path = GetClassPath(className);
@@ -33,7 +31,6 @@ public class FileService
         return lines.Where(l => !string.IsNullOrWhiteSpace(l)).Select(l => l.Trim()).ToList();
     }
 
-    // Zapisuje kolekcję stringów do pliku (każdy element w nowej linii)
     public void SaveClass(string className, IEnumerable<string> students)
     {
         var path = GetClassPath(className);
