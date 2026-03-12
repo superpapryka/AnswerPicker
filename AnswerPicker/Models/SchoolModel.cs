@@ -1,28 +1,63 @@
-﻿using System.Collections.Generic;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace AnswerPicker.Models
 {
+    public class Student
+    {
+        public string Name { get; set; } = string.Empty;
+        public bool IsAbsent { get; set; }
+        public bool IsLucky { get; set; }
+
+        public Student() { }
+
+        public Student(string name)
+        {
+            Name = name;
+            IsAbsent = false;
+            IsLucky = false;
+        }
+
+        public void SetAbsent() { IsAbsent = true; }
+        public void SetPresent() { IsAbsent = false; }
+        public void SetLucky(bool lucky) { IsLucky = lucky; }
+    }
+
+    public class ClassModel
+    {
+        public string Name { get; set; } = string.Empty;
+        public List<Student> Students { get; set; } = new List<Student>();
+
+        public ClassModel() { }
+
+        public ClassModel(string name)
+        {
+            Name = name;
+        }
+    }
+
     public class SchoolModel
     {
         public List<ClassModel> Classes { get; set; } = new List<ClassModel>();
 
         public SchoolModel() { }
 
-        public void AddClass(ClassModel classModel)
+        public void AddClass(ClassModel cls)
         {
-            if (!Classes.Exists(c => c.Name == classModel.Name))
-                Classes.Add(classModel);
+            if (!Classes.Any(c => c.Name == cls.Name))
+                Classes.Add(cls);
         }
 
-        public void RemoveClass(string className)
+        public void RemoveClass(string name)
         {
-            var existing = Classes.Find(c => c.Name == className);
-            if (existing != null) Classes.Remove(existing);
+            var cls = Classes.FirstOrDefault(c => c.Name == name);
+            if (cls != null) Classes.Remove(cls);
         }
 
-        public ClassModel? GetClass(string className)
+        public ClassModel? GetClass(string name)
         {
-            return Classes.Find(c => c.Name == className);
+            return Classes.FirstOrDefault(c => c.Name == name);
         }
     }
 }
