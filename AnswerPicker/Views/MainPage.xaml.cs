@@ -18,7 +18,6 @@ public partial class MainPage : ContentPage
         InitializeComponent();
         this.fileService = fileService;
 
-        // Picker klas i CollectionView dla uczniów
         ClassesPicker.ItemsSource = school.Classes.Select(c => c.Name).ToList();
         StudentsCollection.ItemsSource = null;
 
@@ -31,7 +30,6 @@ public partial class MainPage : ContentPage
         LoadAllClasses();
     }
 
-    // Wczytanie wszystkich klas z plików
     private void LoadAllClasses()
     {
         school.Classes.Clear();
@@ -89,7 +87,7 @@ public partial class MainPage : ContentPage
         if (currentClass == null) return;
 
         fileService.SaveClass(currentClass.Name, currentClass.Students);
-        LoadAllClasses(); // odświeżenie pickera i zachowanie stanu klas
+        LoadAllClasses();
     }
 
     private async void OnDeleteClassClicked(object sender, EventArgs e)
