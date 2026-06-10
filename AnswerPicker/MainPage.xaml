@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="AnswerPicker.MainPage">
+
+    <ScrollView>
+
+        <VerticalStackLayout
+            Padding="20"
+            Spacing="10">
+
+            <Label
+                Text="Answer Picker"
+                FontSize="30"
+                HorizontalOptions="Center" />
+
+            <Label
+                Text="Classes"
+                FontAttributes="Bold" />
+
+            <HorizontalStackLayout>
+
+                <Entry
+                    x:Name="ClassNameEntry"
+                    Placeholder="Class name"
+                    HorizontalOptions="FillAndExpand" />
+
+                <Button
+                    Text="Add"
+                    Clicked="AddClass_Clicked" />
+
+                <Button
+                    Text="Delete"
+                    Clicked="DeleteClass_Clicked" />
+
+            </HorizontalStackLayout>
+
+            <Picker
+                x:Name="ClassPicker"
+                Title="Select class"
+                SelectedIndexChanged="ClassPicker_SelectedIndexChanged" />
+
+            <BoxView HeightRequest="1" />
+
+            <Label
+                Text="Students"
+                FontAttributes="Bold" />
+
+            <HorizontalStackLayout>
+
+                <Entry
+                    x:Name="StudentEntry"
+                    Placeholder="Student name"
+                    HorizontalOptions="FillAndExpand" />
+
+                <Button
+                    Text="Add"
+                    Clicked="AddStudent_Clicked" />
+
+            </HorizontalStackLayout>
+
+            <CollectionView
+                x:Name="StudentsCollectionView">
+
+                <CollectionView.ItemTemplate>
+
+                    <DataTemplate>
+
+                        <Grid
+                            Padding="5"
+                            ColumnDefinitions="*,Auto,Auto">
+
+                            <Label
+                                Grid.Column="0"
+                                Text="{Binding}"
+                                VerticalOptions="Center" />
+
+                            <Button
+                                Grid.Column="1"
+                                Text="Edit"
+                                Clicked="EditStudent_Clicked" />
+
+                            <Button
+                                Grid.Column="2"
+                                Text="Delete"
+                                Clicked="DeleteStudent_Clicked" />
+
+                        </Grid>
+
+                    </DataTemplate>
+
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
+            <Button
+                Text="Save"
+                Clicked="Save_Clicked" />
+
+            <Button
+                Text="Load"
+                Clicked="Load_Clicked" />
+
+            <Button
+                Text="Draw Student"
+                Clicked="DrawStudent_Clicked" />
+
+            <Label
+                x:Name="ResultLabel"
+                FontSize="24"
+                HorizontalOptions="Center" />
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>
